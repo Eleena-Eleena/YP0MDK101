@@ -1,0 +1,57 @@
+﻿<Window x:Class="УчебнаяПрактикаСмеюхаЭС.EditOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:УчебнаяПрактикаСмеюхаЭС"
+        mc:Ignorable="d"
+        Title="ООО «Пиши-стирай»" MinHeight="750" MinWidth="880" Height="750" Width="880">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#76E383" Margin="0">
+            <Image Width="70" Height="70" Margin="20" HorizontalAlignment="Left" Source="Logo/logo.png"/>
+            <TextBlock Text="Редактирование товара" Style="{StaticResource titleTextBlockStyle}"/>
+        </Grid>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Center">
+            <TextBlock Text="Наименование" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Описание" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Категория" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Производитель" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Поставщик" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Цена"  Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Скидка" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Количество" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Единица измерения" Style="{StaticResource mainTextBlockStyle}"/>
+            <Image Width="70" Height="70" x:Name="ImageAgent"></Image>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="0,45,0,0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top">
+            <TextBox x:Name="TboxName" Width="400"/>
+            <TextBox x:Name="TboxDisc" Width="400"/>
+            <ComboBox x:Name="CBoxCategory" DisplayMemberPath="CategoryName"  Margin="10" Height="20"/>
+            <ComboBox x:Name="CBoxMan" DisplayMemberPath="ProductManufacturerName"  Margin="10,5,10,5" Height="20"/>
+            <ComboBox x:Name="CBoxProv" DisplayMemberPath="ProviderName"  Margin="10" Height="20"/>
+            <TextBox x:Name="TboxCost" Width="400"/>
+            <TextBox x:Name="TboxDiscoint" Width="400"/>
+            <TextBox x:Name="TboxStock" Width="400"/>
+            <ComboBox x:Name="CBoxType" DisplayMemberPath="UnitName" Margin="10,5,10,5" Height="20"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Изменить" x:Name="BtnEdit" Click="BtnEdit_Click" Grid.ColumnSpan="2" Margin="5"/>
+            <Button  Content="Удалить" x:Name="BtnDelete" Click="BtnDelete_Click" Grid.RowSpan="2"  Margin="5"/>
+            <Button Content="Назад" x:Name="BtnBack" Click="BtnBack_Click" Grid.RowSpan="2" Margin="5"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

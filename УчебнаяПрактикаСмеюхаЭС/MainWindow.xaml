@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:УчебнаяПрактикаСмеюхаЭС"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="ООО «Пиши-стирай»" MinHeight="360" MinWidth="450" Height="360" Width="450">
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.ColumnSpan="2" Background="#76E383">
+            <Image Width="50" Height="50" HorizontalAlignment="Left" Source="Logo/logo.png"/>
+            <TextBlock Text="Авторизация" Style="{StaticResource titleTextBlockStyle}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Логин" Style="{StaticResource mainTextBlockStyle}"/>
+            <TextBlock Text="Пароль" Style="{StaticResource mainTextBlockStyle}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBox x:Name="TBoxLogin"/>
+            <PasswordBox x:Name="TBoxPassword"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" x:Name="GridCAPCHA" Grid.Column="0" Width="100" Height="30" VerticalAlignment="Bottom" Visibility="Collapsed">
+            <Grid.Background>
+                <LinearGradientBrush x:Name="CaptchaBackground" EndPoint="0.6,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightBlue" Offset="1" />
+                    <GradientStop Color="LightYellow" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <TextBlock Text="" x:Name="TblockCAPTCHA" HorizontalAlignment="Center" VerticalAlignment="Center">
+                   <Line Stroke="RoyalBlue" StrokeThickness="1" X1="3" Y1="6" Stretch="Fill" Height="12" Width="4"/>
+                <TextBlock.RenderTransform>
+                    <RotateTransform Angle="-8"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+        </Grid>
+        <StackPanel Visibility="Collapsed" x:Name="SPCAPCHA" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Margin="5">
+            <TextBox Text="" x:Name="TBoxCAPTCHA" Width="160"/>
+               <Button Content="Проверить" x:Name="BtnCAPCHA" Click="BtnCAPCHA_Click"/>
+        </StackPanel>
+ 
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <Button Content="Войти" x:Name="BtnLog" Click="BtnLog_Click"/>
+            <TextBlock Text="Войти как гость" x:Name="TBlockGuest" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" Style="{StaticResource helpTextBlockStyle}"/>
+        </StackPanel>
+
     </Grid>
 </Window>

@@ -1,0 +1,86 @@
+﻿<Window x:Class="УчебнаяПрактикаСмеюхаЭС.CheckOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:УчебнаяПрактикаСмеюхаЭС"
+        mc:Ignorable="d"
+        Title="ООО «Пиши-стирай»" MinHeight="760" MinWidth="1100" Height="760" Width="1100">
+    <Grid x:Name="print">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="#76E383">
+            <Image Width="70" Height="70" Margin="20" HorizontalAlignment="Left" Source="Logo/logo.png"/>
+            <TextBlock Text="Чек" Style="{StaticResource titleTextBlockStyle}"/>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Фамилия Имя Отчество: " Style="{StaticResource mainTextBlockStyle}"/>
+                    <TextBlock Text="ФИО" x:Name="TBoxFIO" Style="{StaticResource titleTextBlockStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Дата покупки: " Style="{StaticResource mainTextBlockStyle}"/>
+                    <TextBlock Text="01.01.01" x:Name="TBoxData" Style="{StaticResource titleTextBlockStyle}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Дата доставки: " Style="{StaticResource mainTextBlockStyle}"/>
+                    <TextBlock Text="02.03.02" x:Name="TBoxDataDel" Style="{StaticResource titleTextBlockStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Адрес пункта: " Style="{StaticResource mainTextBlockStyle}"/>
+                    <TextBlock Text="00000 г.Город ул.Улица д.00" x:Name="TBoxAddress" Style="{StaticResource titleTextBlockStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Код выдачи: " Style="{StaticResource mainTextBlockStyle}"/>
+                    <TextBlock Text="" x:Name="TBlockNumber" Style="{StaticResource titleTextBlockStyle}"/>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <ListView Name="LViewOrder" Grid.Row="1">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <Grid Margin="20" Width="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ProductArticleNumber}" Style="{StaticResource mainTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding ProductName}" Style="{StaticResource mainTextBlockStyle}"/>
+                                    <TextBlock  Margin="30,0,0,0" Text="{Binding Count}" Style="{StaticResource mainTextBlockStyle}" x:Name="TBlockCount"/>
+                                    <TextBlock Text="Сумма цены товаров без скидки: " Style="{StaticResource mainTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding Price}" Style="{StaticResource mainTextBlockStyle}"/>
+                                    <TextBlock Text="Сумма цены товаров со скидкой: " Style="{StaticResource mainTextBlockStyle}"/>
+                                    <TextBlock Text="{Binding PriceDicount}" Style="{StaticResource mainTextBlockStyle}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button Content="Сохранить" Name="BtnSavePDF" Click="BtnSavePDF_Click"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Общая сумма со скидкой: "  Style="{StaticResource mainTextBlockStyle}" />
+                    <TextBlock Text="" x:Name="TBlockDis" Style="{StaticResource mainTextBlockStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Общая сумма: "  Style="{StaticResource mainTextBlockStyle}" />
+                    <TextBlock Text="" x:Name="TBlockPr" Style="{StaticResource mainTextBlockStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

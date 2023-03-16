@@ -1,0 +1,115 @@
+﻿<Window x:Class="УчебнаяПрактикаСмеюхаЭС.OrderList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:УчебнаяПрактикаСмеюхаЭС"
+        mc:Ignorable="d"
+        Title="ООО «Пиши-стирай»" MinHeight="800" MinWidth="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#76E383">
+            <Image Width="70" Height="70" Margin="20" HorizontalAlignment="Left" Source="Logo/logo.png"/>
+            <TextBlock Text="Список заказов" Style="{StaticResource titleTextBlockStyle}"/>
+            <TextBlock Text="ФИО" x:Name="TboxFIO" Margin="0,0,20,0" Style="{StaticResource titleTextBlockStyle}" HorizontalAlignment="Right"/>
+        </Grid>
+        <StackPanel Orientation="Vertical"  Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBox IsHitTestVisible="True" Text="Поиск" Height="20" Width="250" Margin="5,10,15,0"
+                          x:Name="TBSearch" TextChanged="TBSearch_TextChanged"></TextBox>
+                <ComboBox Width="120" Margin="5,10,15,0"
+                          x:Name="CBSort" SelectionChanged="CBSort_SelectionChanged"></ComboBox>
+                <CheckBox Width="auto" Margin="5,10,5,0" Content="По убыванию" VerticalAlignment="Center"
+                          x:Name="CBUpDown" Checked="CBUpDown_Checked" Unchecked="CBUpDown_Unchecked"></CheckBox>
+                <TextBlock Text="0" Style="{StaticResource mainTextBlockStyle}" x:Name="TBlockList"/>
+                <TextBlock Text=" из --" Style="{StaticResource mainTextBlockStyle}" x:Name="TBlockListCount"/>
+                
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="5" x:Name="SPEdit" Visibility="Collapsed">
+                <Button Content="Редактировать товар" x:Name="BtnEdit" Click="BtnEdit_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Right" Margin="5" x:Name="SPListOrderCount" Visibility="Collapsed">
+            <TextBlock Text="0" Style="{StaticResource mainTextBlockStyle}" x:Name="TBlockListOrderCount"
+                    Margin="5"/>
+            <Button Content="Корзина" Width="50" Click="Button_Click"/>
+        </StackPanel>
+
+        
+
+        <ListView Name="LViewOrder" Grid.Row="2" Grid.ColumnSpan="2"
+                  MouseRightButtonUp="LViewOrder_MouseRightButtonUp"
+                  Background="{Binding Colordiscoint}">
+            <ListView.ContextMenu>
+                <ContextMenu Name="ContextMenuOrder" Visibility="Collapsed">
+                    <MenuItem Header="Добавить к заказу" Click="MenuItem_Click"/>
+                    <MenuItem Header="Удалить из заказа" Click="MenuItem_Click_1"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <Grid Margin="20" Width="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Image Width="50" Height="50">
+                                <Image.Source>
+                                    <Binding Path="ProductPhoto">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>picture.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>
+                            </Image>
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10,0,0,0">
+                                <StackPanel.Background>
+                                    <SolidColorBrush Color="{Binding Colordiscoint}"/>
+                                </StackPanel.Background>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Text="Артикль товара: "></TextBlock>
+                                    <TextBlock Text="{Binding ProductArticleNumber}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
+                                    <TextBlock Text="Название товара: "></TextBlock>
+                                    <TextBlock Text="{Binding ProductName}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Text="Описание: "></TextBlock>
+                                    <TextBlock Text="{Binding ProductDescription}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Text="Производитель: "></TextBlock>
+                                    <TextBlock Text="{Binding Provider.ProviderName}"></TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Text="Цена: "></TextBlock>
+                                    <TextBlock Text="{Binding ProductCost}" TextDecorations="{Binding Decoration}" Margin="5,0,0,5"></TextBlock>
+
+                                    <TextBlock Text="{Binding Discount}" Visibility="{Binding VisibilityCost}" Margin="5,0,0,5"></TextBlock>
+                                </StackPanel>
+                            </StackPanel>
+                            <TextBlock Text="{Binding ProductMaxDiscount}" TextAlignment="Right" HorizontalAlignment="Right"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Назад" x:Name="BtnBack" Click="BtnBack_Click" HorizontalAlignment="Center"/>
+        <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Назад" x:Name="BtnBack1" Click="BtnBack1_Click" HorizontalAlignment="Center" Visibility="Hidden"/>
+
+    </Grid>
+</Window>
