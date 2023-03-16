@@ -107,12 +107,13 @@ namespace УчебнаяПрактикаСмеюхаЭС
             }
             finally
             {
+                OrderList or = new OrderList(user);
                 BtnSavePDF.Visibility = Visibility.Visible;
                 this.IsEnabled = true;
                 MessageBox.Show("Документ сохранен");
                 this.Close();
-                OrderList or = new OrderList(user);
                 or.Show();
+
             }
         }
     }

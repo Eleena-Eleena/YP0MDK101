@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:УчебнаяПрактикаСмеюхаЭС"
         mc:Ignorable="d"
-        Title="ООО «Пиши-стирай»" Height="720" Width="1210">
+        Title="ООО «Пиши-стирай»" MinHeight="720" MinWidth="1600" Height="720" Width="1600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
